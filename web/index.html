@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>订阅账单分析与更正平台</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◧</span>
+    <div>
+      <h1>订阅账单分析与更正平台</h1>
+      <p class="sub">按日计费 · 不可变账单版本 · 幂等回调 · 时区边界</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="btn-run-billing" class="btn primary">运行出账任务</button>
+    <button id="btn-deliver" class="btn">发送待发通知</button>
+    <button id="btn-recover" class="btn ghost">恢复未完成更正</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="sidebar">
+    <section class="card">
+      <h2>总览</h2>
+      <div id="overview" class="overview-grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>订阅 <button id="btn-new-sub" class="btn tiny">＋ 新建</button></h2>
+      <ul id="sub-list" class="sub-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>操作面板</h2>
+      <div class="action-grid">
+        <button data-act="plan_changed" class="btn tiny">变更套餐(升级/降级)</button>
+        <button data-act="paused" class="btn tiny">暂停</button>
+        <button data-act="resumed" class="btn tiny">恢复</button>
+        <button data-act="canceled" class="btn tiny">取消订阅</button>
+        <button data-act="refund" class="btn tiny">退款</button>
+        <button data-act="fault" class="btn tiny warn">注入故障(演示恢复)</button>
+      </div>
+      <div id="action-form" class="action-form hidden"></div>
+    </section>
+  </aside>
+
+  <section class="content">
+    <div class="tabs">
+      <button class="tab active" data-tab="timeline">订阅时间线</button>
+      <button class="tab" data-tab="analysis">账单分析 / 重算范围</button>
+      <button class="tab" data-tab="invoices">账单与版本差异</button>
+      <button class="tab" data-tab="corrections">更正记录</button>
+      <button class="tab" data-tab="webhooks">回调模拟器 (幂等)</button>
+      <button class="tab" data-tab="notifications">通知状态</button>
+      <button class="tab" data-tab="audit">审计日志</button>
+    </div>
+
+    <div id="tab-timeline" class="tab-panel active"><div id="timeline"></div></div>
+    <div id="tab-analysis" class="tab-panel"><div id="analysis"></div></div>
+    <div id="tab-invoices" class="tab-panel"><div id="invoices"></div></div>
+    <div id="tab-corrections" class="tab-panel"><div id="corrections"></div></div>
+    <div id="tab-webhooks" class="tab-panel"><div id="webhooks"></div></div>
+    <div id="tab-notifications" class="tab-panel"><div id="notifications"></div></div>
+    <div id="tab-audit" class="tab-panel"><div id="audit"></div></div>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+<footer class="footer">金额单位为整数分 (cents)，展示时按币种格式化 · 所有时间戳 UTC 存储，按订阅时区解释日历日</footer>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

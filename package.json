@@ -1,0 +1,15 @@
+{
+  "name": "subscription-billing-correction",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Subscription billing analysis, proration and immutable invoice correction flow",
+  "scripts": {
+    "start": "node --no-warnings src/server/server.js",
+    "test": "node --test --no-warnings test/*.test.js",
+    "seed": "node --no-warnings scripts/seed-demo.js"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
